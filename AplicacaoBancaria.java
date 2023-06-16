@@ -180,6 +180,67 @@ public class AplicacaoBancaria {
                             System.out.print("Escolha uma opção: ");
                             opcaoConta = scanner.nextInt();
 
+public class Conta {
+    private String numero;
+    private double saldo;
+    private String tipo;
+
+    // Construtor
+    public Conta(String numero, double saldo, String tipo) {
+        this.numero = numero;
+        this.saldo = saldo;
+        this.tipo = tipo;
+    }
+
+    // Getters e Setters
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    // Método para transferir saldo entre contas
+    public static void transferirSaldo(Conta origem, Conta destino, double valor) {
+        if (origem.getSaldo() >= valor) {
+            origem.setSaldo(origem.getSaldo() - valor);
+            destino.setSaldo(destino.getSaldo() + valor);
+            System.out.println("Transferência realizada com sucesso!");
+        } else {
+            System.out.println("Saldo insuficiente para realizar a transferência.");
+        }
+    }
+
+    public static void main(String[] args) {
+        // Criando contas de teste
+        Conta pessoaJuridica = new Conta("1234", 1000.0, "Pessoa Jurídica");
+        Conta pessoaFisica = new Conta("5678", 500.0, "Pessoa Física");
+
+        // Realizando a transferência de saldo
+        transferirSaldo(pessoaJuridica, pessoaFisica, 500.0);
+
+        // Imprimindo os saldos após a transferência
+        System.out.println("Saldo da Pessoa Jurídica: " + pessoaJuridica.getSaldo());
+        System.out.println("Saldo da Pessoa Física: " + pessoaFisica.getSaldo());
+                      
                             switch (opcaoConta) {
                                 case 1:
                                     System.out.println("Saldo: R$" + contaAcesso.getSaldo());
